@@ -7,43 +7,32 @@ import { useState } from 'react/cjs/react.development';
 
 function Expenses(props) {
     const [selectedYear, setSelectedYear] = useState('2020');
+
     const changeYearHandler = (year) => {
-        console.log(year);
+        console.log("expenses");
         setSelectedYear(year);
+
+        // props.yearFilter(year);
     }
-    
+
+    const result = props.expenseList.filter(x => 
+        x.date.getFullYear().toString() === selectedYear
+    );
+
     return (
         <Card className='expenses'>
             <ExpenseFilter year={selectedYear} onChangeYear={changeYearHandler}/>
             {
-                props.expenseList.map(x => 
+                result.map(x => 
                     <ExpenseItem
+                        key={x.id}
                         title={x.title}
                         amount={x.amount}
                         date={x.date}
                     />
                 )
             }
-            {/* <ExpenseItem 
-                title={props.expenseList[0].title}
-                amount={props.expenseList[0].amount}
-                date={props.expenseList[0].date}
-            />
-            <ExpenseItem 
-                title={props.expenseList[1].title}
-                amount={props.expenseList[1].amount}
-                date={props.expenseList[1].date}
-            />
-            <ExpenseItem 
-                title={props.expenseList[2].title}
-                amount={props.expenseList[2].amount}
-                date={props.expenseList[2].date}
-            />
-            <ExpenseItem 
-                title={props.expenseList[3].title}
-                amount={props.expenseList[3].amount}
-                date={props.expenseList[3].date}
-            /> */}
+
         </Card>
     )
 };

@@ -24,6 +24,14 @@ function App() {
     })
   }
 
+  // const filterByYear = (year) => {
+  //   const result = ACTUAL_EXPENSE.filter(x => 
+  //     x.date.getFullYear() == year
+  //   );
+  //   console.log(result);
+  //   setActualExpenses([result]);
+  // }
+
   return (
     <main>
       <NewExpense onAddedExpense={addedxpenseHandler}/>
